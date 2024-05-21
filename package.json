@@ -1,5 +1,5 @@
 {
-  "name": "@ain477/fhook",
+  "name": "@aincoder/fhook",
   "version": "0.0.1",
   "description": "Easily intercept and modify XHR request and response",
   "main": "lib/main.js",
