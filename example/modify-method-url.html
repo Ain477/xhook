@@ -5,12 +5,12 @@
 <h5>modified request - fetch</h5>
 <pre id="fetch_one"></pre>
 
-<script src="../dist/xhook.js"></script>
+<script src="../dist/fhook.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
 
 <script type="text/javascript">
 // hook and modify request from POST -> GET to and 'example1' -> 'example2'
-xhook.before(function(request) {
+fhook.before(function(request) {
   request.method = 'GET';
   request.url = 'example2.txt';
 });

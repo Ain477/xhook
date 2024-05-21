@@ -50,10 +50,10 @@ function covertTDAarryToObj<T extends [any, any][]>(input: T) {
 }
 
 /**
- * if fetch(hacked by Xhook) accept a Request as a first parameter, it will be destructed to a plain object.
+ * if fetch(hacked by fhook) accept a Request as a first parameter, it will be destructed to a plain object.
  * Finally the whole network request was convert to fetch(Request.url, other options)
  */
-const Xhook: typeof fetch = function (input, init = { headers: {} }) {
+const fhook: typeof fetch = function (input, init = { headers: {} }) {
   let options: InterceptReqOptions = { ...init, isFetch: true };
 
   if (input instanceof Request) {
@@ -159,7 +159,7 @@ export default {
   },
   patch() {
     if (Native) {
-      windowRef.fetch = Xhook;
+      windowRef.fetch = fhook;
     }
   },
   unpatch() {
@@ -168,5 +168,5 @@ export default {
     }
   },
   Native,
-  Xhook,
+  fhook,
 };

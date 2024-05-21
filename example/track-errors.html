@@ -2,7 +2,7 @@
 <h5>Errors:</h5>
 <pre></pre>
 
-<script src="../dist/xhook.js"></script>
+<script src="../dist/fhook.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
 
 <script type="text/javascript">
@@ -10,7 +10,7 @@
 var requestCounter = 1;
 
 //read response
-xhook.after(function(request, response) {
+fhook.after(function(request, response) {
   if(response.status !== 200)
     $("pre").append('(' + requestCounter + ') ' + "Non-200 error code detected: " + response.status + '\r\n');
     requestCounter++;

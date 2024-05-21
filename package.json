@@ -1,6 +1,6 @@
 {
   "name": "@aincoder/fhook",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Easily intercept and modify XHR request and response",
   "main": "lib/main.js",
   "module": "es/main.js",
@@ -10,11 +10,12 @@
     "test": "npm run build && playwright test",
     "test:only": "playwright test",
     "test:server": "http-server --port 8080",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ain477/xhook"
+    "url": "git+https://github.com/Ain477/fhook.git"
   },
   "keywords": [
     "xhr",

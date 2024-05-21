@@ -6,7 +6,7 @@
 <pre id="result-2"></pre>
 <pre>Multiple setRequestHeaders append values</pre>
 
-<script src="../dist/xhook.js"></script>
+<script src="../dist/fhook.js"></script>
 <script type="text/javascript">
 
 
@@ -42,7 +42,7 @@ xhr2.open('GET', 'example2.txt');
 xhr2.setRequestHeader("foO-BAR", "42");
 xhr2.setRequestHeader("foo-baR", "21");
 
-xhook.after(function(req, res) {
+fhook.after(function(req, res) {
   if(req.url === 'example2.txt')
     document.getElementById('result-2').innerHTML = JSON.stringify(req.headers, 0, 2);
 });

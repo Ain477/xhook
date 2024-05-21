@@ -11,11 +11,11 @@ test("Should preserve headers of Request", async ({ page }) => {
   await page.evaluate(url => {
     const req = new Request(url, {
       headers: {
-        "custom-xhook-header": "1",
+        "custom-fhook-header": "1",
       },
     });
     fetch(req);
   }, url);
   const headers = await waitting;
-  expect(headers).toMatchObject({ "custom-xhook-header": "1" });
+  expect(headers).toMatchObject({ "custom-fhook-header": "1" });
 });

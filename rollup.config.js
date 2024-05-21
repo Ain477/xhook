@@ -6,15 +6,15 @@ import { version } from "./package.json";
 const year = new Date().getFullYear();
 
 const banner =
-  `//XHook - v${version} - ` +
-  "https://github.com/jpillora/xhook\n" +
-  `//Jaime Pillora <dev@jpillora.com> - ` +
+  `//fhook - v${version} - ` +
+  "https://github.com/Ain477/fhook\n" +
+  `//Al-Amin Islam Nerob <alamin@aincoder.com> - ` +
   `MIT Copyright ${year}`;
 
 const baseIifeConfig = {
   banner,
   format: "iife",
-  name: "xhook",
+  name: "fhook",
   sourcemap: true,
 };
 
@@ -23,15 +23,15 @@ export default defineConfig({
   output: [
     {
       ...baseIifeConfig,
-      file: "dist/xhook.js",
+      file: "dist/fhook.js",
     },
     {
       ...baseIifeConfig,
-      file: "dist/xhook.min.js",
+      file: "dist/fhook.min.js",
       plugins: [
         terser({
           format: {
-            comments: /^(XHook|Jaime)/,
+            comments: /^(fhook|AinCoder)/,
           },
         }),
       ],

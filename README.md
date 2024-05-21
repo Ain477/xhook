@@ -1,12 +1,12 @@
-# XHook
+# fhook
 
 #### Easily intercept and modify XHR ("AJAX") request and response
 
-<a href="https://twitter.com/intent/tweet?hashtags=xhook%2Cjavascript%2Cxhr&original_referer=http%3A%2F%2Fgithub.com%2F&text=XHook%3A+Easily+intercept+and+modify+XHR+request+and+response&tw_p=tweetbutton&url=https%3A%2F%2Fgithub.com%2Fjpillora%2Fxhook" target="_blank">
+<a href="https://twitter.com/intent/tweet?hashtags=fhook%2Cjavascript%2Cxhr&original_referer=http%3A%2F%2Fgithub.com%2F&text=fhook%3A+Easily+intercept+and+modify+XHR+request+and+response&tw_p=tweetbutton&url=https%3A%2F%2Fgithub.com%2Fjpillora%2Ffhook" target="_blank">
   <img src="http://jpillora.com/github-twitter-button/img/tweet.png"></img>
 </a>
 
-With XHook, you could easily implement functionality to:
+With fhook, you could easily implement functionality to:
 
 - Cache requests in memory, localStorage, etc.
 - Insert authentication headers
@@ -32,40 +32,40 @@ Support Modern Browser.
 
 ## Demos
 
-### *http://jpillora.com/xhook*
+### *http://jpillora.com/fhook*
 
 ## Usage
 
-:warning: _It's_ **important** _to include XHook first as other libraries may store a reference to `XMLHttpRequest` before XHook can patch it_
+:warning: _It's_ **important** _to include fhook first as other libraries may store a reference to `XMLHttpRequest` before fhook can patch it_
 
-Using `script` link to load xhook and use it, like so:
+Using `script` link to load fhook and use it, like so:
 
 ```html
-<script src="//unpkg.com/xhook@latest/dist/xhook.min.js"></script>
+<script src="//unpkg.com/fhook@latest/dist/fhook.min.js"></script>
 <script>
-  xhook.after(function (request, response) {
+  fhook.after(function (request, response) {
     if (request.url.match(/example\.txt$/))
       response.text = response.text.replace(/[aeiou]/g, "z");
   });
 </script>
 ```
 
-- Development [xhook.js](https://jpillora.com/xhook/dist/xhook.js)
-- Production [xhook.min.js](https://jpillora.com/xhook/dist/xhook.min.js)
-- CDN (Use `latest` or lock to one of the [available versions](https://github.com/jpillora/xhook/releases))
+- Development [fhook.js](https://jpillora.com/fhook/dist/fhook.js)
+- Production [fhook.min.js](https://jpillora.com/fhook/dist/fhook.min.js)
+- CDN (Use `latest` or lock to one of the [available versions](https://github.com/jpillora/fhook/releases))
 
-We can also install xhook via npm.
+We can also install fhook via npm.
 
 ```bash
-npm install xhook
+npm install fhook
 ```
 
-Then use ESM syntax to load xhook.
+Then use ESM syntax to load fhook.
 
 ```js
-import xhook from "xhook";
+import fhook from "fhook";
 //modify 'responseText' of 'example2.txt'
-xhook.after(function (request, response) {
+fhook.after(function (request, response) {
   if (request.url.match(/example\.txt$/))
     response.text = response.text.replace(/[aeiou]/g, "z");
 });
@@ -73,7 +73,7 @@ xhook.after(function (request, response) {
 
 ## API
 
-### `xhook.before(handler(request[, callback])[, index])`
+### `fhook.before(handler(request[, callback])[, index])`
 
 Modifying **any** property of the `request` object will modify the underlying XHR before it is sent.
 
@@ -81,19 +81,19 @@ To make the `handler` is asynchronous, just include the optional `callback` func
 
 To provide a **fake** response, `return` **or** `callback()` a `response` object.
 
-### `xhook.after(handler(request, response[, callback]) [, index])`
+### `fhook.after(handler(request, response[, callback]) [, index])`
 
 Modifying **any** property of the `response` object will modify the underlying XHR before it is received.
 
 To make the `handler` is asynchronous, just include the optional `callback` function.
 
-### `xhook.enable()`
+### `fhook.enable()`
 
-Enables XHook (swaps out the native `XMLHttpRequest` class). XHook is enabled be default.
+Enables fhook (swaps out the native `XMLHttpRequest` class). fhook is enabled be default.
 
-### `xhook.disable()`
+### `fhook.disable()`
 
-Disables XHook (swaps the native `XMLHttpRequest` class back in)
+Disables fhook (swaps the native `XMLHttpRequest` class back in)
 
 ---
 
@@ -134,15 +134,15 @@ http://www.w3.org/TR/XMLHttpRequest2/
 
 ## Issues
 
-- XHook does **not** attempt to resolve any browser compatibility issues. Libraries like jQuery
-  and https://github.com/ilinsky/xmlhttprequest will attempt to do this. XHook simply proxies to and from `XMLHttpRequest`, so you may use any library
-  conjunction with XHook, just make sure to load XHook **first**.
+- fhook does **not** attempt to resolve any browser compatibility issues. Libraries like jQuery
+  and https://github.com/ilinsky/xmlhttprequest will attempt to do this. fhook simply proxies to and from `XMLHttpRequest`, so you may use any library
+  conjunction with fhook, just make sure to load fhook **first**.
 
 - You may use synchronous XHR, though this will cause asynchronous hooks to be **skipped**.
 
 ## Contributing
 
-See [CONTRIBUTING](CONTRIBUTING.md) for instructions on how to build and run XHook locally.
+See [CONTRIBUTING](CONTRIBUTING.md) for instructions on how to build and run fhook locally.
 
 ## License
 

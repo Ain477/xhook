@@ -1,18 +1,18 @@
-<!-- TODO create test capturing real xhr, comparing against xhook -->
+<!-- TODO create test capturing real xhr, comparing against fhook -->
 
-<h5>Comparing xhook and native XMLHttpRequests:</h5>
+<h5>Comparing fhook and native XMLHttpRequests:</h5>
 
-<h5>xhook events</h5>
-<pre id="xhook"></pre>
+<h5>fhook events</h5>
+<pre id="fhook"></pre>
 
 <h5>native events</h5>
 <pre id="native"></pre>
 
-<script src="../dist/xhook.js"></script>
+<script src="../dist/fhook.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
 <script type="text/javascript">
-  var xcontainer = $("#xhook");
-  xhook.before(function(req, callback) {
+  var xcontainer = $("#fhook");
+  fhook.before(function(req, callback) {
     xcontainer.append("[before start]...\n");
     setTimeout(function() {
       xcontainer.append("[before end]\n");
@@ -48,7 +48,7 @@
     xhr.send();
   }
 
-  test("xhook");
-  xhook.disable();
+  test("fhook");
+  fhook.disable();
   test("native");
 </script>

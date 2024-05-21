@@ -11,10 +11,10 @@
 <h5>example2.txt - fetch</h5>
 <pre id="fetch_two"></pre>
 
-<script src="../dist/xhook.js"></script>
+<script src="../dist/fhook.js"></script>
 <script type="text/javascript">
 
-xhook.after(function(request, response, cb) {
+fhook.after(function(request, response, cb) {
   if (request.url.match(/example2\.txt$/)) {
     if (response instanceof Response) {
       response.text().then(function (text) {

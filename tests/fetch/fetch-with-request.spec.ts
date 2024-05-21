@@ -10,7 +10,7 @@ test("Should changed url of Request", async ({ page }) => {
   });
   await page.evaluate(url => {
     // @ts-ignore
-    xhook.before(function (req) {
+    fhook.before(function (req) {
       req.url = "example1.txt";
     });
     const req = new Request(url);

@@ -1,11 +1,11 @@
 import { test, expect } from "@playwright/test";
 import { createWaitting, addListenForUrl } from "./test.util";
 
-test("should complete with xhook events", async ({ page }) => {
+test("should complete with fhook events", async ({ page }) => {
   const { waitting, $resolve } = createWaitting();
-  addListenForUrl(page, /xhook$/, $resolve);
+  addListenForUrl(page, /fhook$/, $resolve);
   await page.goto("http://127.0.0.1:8080/example/events.html");
-  const dom = page.locator("id=xhook");
+  const dom = page.locator("id=fhook");
   await waitting;
   expect(await dom.innerText()).toContain(
     "[before start]...\n" +

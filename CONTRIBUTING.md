@@ -1,8 +1,8 @@
 - Install [Node](http://nodejs.org)
 
-- Fork and clone `git clone https://github.com/MY-USERNAME/xhook`
+- Fork and clone `git clone https://github.com/MY-USERNAME/fhook`
 
-- Enter project `cd xhook`
+- Enter project `cd fhook`
 
 - Install deps with `npm install`
 

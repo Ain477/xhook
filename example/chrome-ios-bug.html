@@ -2,7 +2,7 @@
 <body>
 <h1>Chrome iOS Bug</h1>
 
-<script type="text/javascript" src="../dist/xhook.js"></script>
+<script type="text/javascript" src="../dist/fhook.js"></script>
 <script type="text/javascript">
 
     //cant see console.logs on the iphone
@@ -14,17 +14,17 @@
 
 	print("begin")
 
-	xhook.before(function(req) {
+	fhook.before(function(req) {
 		print('before ' + req.method + ' ' + req.url);
 	});
 
-	xhook.after(function(req, res, callback) {
+	fhook.after(function(req, res, callback) {
 		//this hook wont get called for sync xhr
 		print('simulate delay... ' + req.method + ' ' + req.url);
 		setTimeout(callback, 1000);
 	});
 
-	xhook.after(function(req, res) {
+	fhook.after(function(req, res) {
 		print('after ' + req.method + ' ' + req.url);
 	});
 

@@ -9,12 +9,12 @@
 <pre id="result"></pre>
 
 <script src="https://cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js"></script>
-<script src="../dist/xhook.js"></script>
+<script src="../dist/fhook.js"></script>
 <script type="text/javascript">
-  xhook.before(function(request) {
+  fhook.before(function(request) {
     console.log("BEFORE", request);
   });
-  xhook.after(function(request, response) {
+  fhook.after(function(request, response) {
     console.log("AFTER", request, response);
   });
   document.getElementById("submit").addEventListener("click", function() {

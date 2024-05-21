@@ -18,7 +18,7 @@ test("Should call the afterHook when a request fails", async ({ page }) => {
     let callInAfter = false;
     let isCallFailed = false;
     //@ts-ignore
-    xhook.after((req, res) => {
+    fhook.after((req, res) => {
       callInAfter = true;
     });
     try {

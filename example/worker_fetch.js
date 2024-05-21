@@ -1,6 +1,6 @@
-importScripts('../dist/xhook.js');
+importScripts('../dist/fhook.js');
 
-xhook.after(function(request, response, cb) {
+fhook.after(function(request, response, cb) {
   if (request.url.match(/example2\.txt$/)) {
     response.text().then(function (text) {
       var newResponse = text.replace(/[aeiou]/g, 'z');

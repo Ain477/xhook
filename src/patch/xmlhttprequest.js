@@ -16,8 +16,8 @@ const nullify = res => (res === undefined ? null : res);
 const Native = windowRef.XMLHttpRequest;
 let interceptOnly = [];
 
-//xhook's XMLHttpRequest
-const Xhook = function () {
+//fhook's XMLHttpRequest
+const fhook = function () {
   const ABORTED = -1;
   const xhr = new Native();
   let watch = true;
@@ -66,7 +66,7 @@ const Xhook = function () {
       // unable to set responseXML due to response type, we attempt to assign responseXML
       // when the type is text even though it's against the spec due to several libraries
       // and browser vendors who allow this behavior. causing these requests to fail when
-      // xhook is installed on a page.
+      // fhook is installed on a page.
     } else if (xhr.responseType === "document") {
       response.xml = xhr.responseXML;
       response.data = xhr.responseXML;
@@ -413,11 +413,11 @@ const Xhook = function () {
   return facade;
 };
 
-Xhook.UNSENT = 0;
-Xhook.OPENED = 1;
-Xhook.HEADERS_RECEIVED = 2;
-Xhook.LOADING = 3;
-Xhook.DONE = 4;
+fhook.UNSENT = 0;
+fhook.OPENED = 1;
+fhook.HEADERS_RECEIVED = 2;
+fhook.LOADING = 3;
+fhook.DONE = 4;
 
 //patch interface
 export default {
@@ -429,7 +429,7 @@ export default {
       if (interceptOnly) {
         windowRef.XMLHttpRequest = Native;
       } else {
-        windowRef.XMLHttpRequest = Xhook;
+        windowRef.XMLHttpRequest = fhook;
       }
     }
   },
@@ -439,5 +439,5 @@ export default {
     }
   },
   Native,
-  Xhook,
+  fhook,
 };

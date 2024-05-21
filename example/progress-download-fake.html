@@ -2,11 +2,11 @@
 <h5>download progress events</h5>
 <pre id="events"></pre>
 
-<script src="../dist/xhook.js"></script>
+<script src="../dist/fhook.js"></script>
 <script type="text/javascript">
 
 //simulate progress events
-xhook.before(function(request, callback) {
+fhook.before(function(request, callback) {
 
   var loaded = 0;
   //manually firing progress will advance the ready state to 3

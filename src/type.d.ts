@@ -35,8 +35,8 @@ declare namespace fhook {
 declare const fhook: {
   enable: () => void;
   disable: () => void;
-  before: (handler: xhook.BeforeHandler, index?: number) => void;
-  after: (handler: xhook.AfterHandler, index?: number) => void;
+  before: (handler: fhook.BeforeHandler, index?: number) => void;
+  after: (handler: fhook.AfterHandler, index?: number) => void;
 };
 
 export = fhook;

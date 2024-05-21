@@ -2,11 +2,11 @@
 <h5>responseType example</h5>
 <pre>See modern browser console...</pre>
 
-<script src="../dist/xhook.js"></script>
+<script src="../dist/fhook.js"></script>
 
 <script type="text/javascript">
 //silently provide a 'responseType' to the request
-xhook.before(function(request) {
+fhook.before(function(request) {
   if(/\.json$/.test(request.url))
     request.type = "json";
   else if(/\.html$/.test(request.url))
