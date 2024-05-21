@@ -11,6 +11,12 @@ import hooks from "./misc/hooks";
 //(not the best decision in hindsight)
 const xhook = hooks;
 xhook.EventEmitter = EventEmitter;
+
+/**
+ * Only intercept the provided domain's requests
+ */
+xhook.interceptOnly = [];
+
 //modify hooks
 xhook.before = function (handler, i) {
   if (handler.length < 1 || handler.length > 2) {
@@ -41,7 +47,19 @@ xhook.fetch = fetch.Native;
 //expose helpers
 xhook.headers = headers.convert;
 
-//enable by default
-xhook.enable();
+if (xhook.interceptOnly && xhook.interceptOnly.length > 0) {
+  console.log("====================================");
+  console.log("Watching with filter");
+  console.log("====================================");
+  xhook.disable();
+  XMLHttpRequest.filterURL(xhook.interceptOnly);
+  fetch.filterURL(xhook.interceptOnly);
+  xhook.enable();
+} else {
+  console.log("====================================");
+  console.log(`Watching without filter`);
+  console.log("====================================");
+  xhook.enable();
+}
 
 export default xhook;

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { windowRef } from "../misc/window";
 import {
   proxyEvents,
@@ -13,11 +14,13 @@ const nullify = res => (res === undefined ? null : res);
 
 //browser's XMLHttpRequest
 const Native = windowRef.XMLHttpRequest;
+let interceptOnly = [];
 
 //xhook's XMLHttpRequest
 const Xhook = function () {
   const ABORTED = -1;
   const xhr = new Native();
+  let watch = true;
 
   //==========================
   // Extra state
@@ -162,7 +165,9 @@ const Xhook = function () {
       }
       return;
     };
-    process();
+    if (watch) {
+      process();
+    }
   };
 
   //==========================
@@ -205,20 +210,26 @@ const Xhook = function () {
     }
   });
 
-  // initialise 'withCredentials' on facade xhr in browsers with it
+  // Initialize 'withCredentials' on facade xhr in browsers with it
   // or if explicitly told to do so
   if ("withCredentials" in xhr) {
     facade.withCredentials = false;
   }
   facade.status = 0;
 
-  // initialise all possible event handlers
+  // initialize all possible event handlers
   for (let event of Array.from(COMMON_EVENTS.concat(UPLOAD_EVENTS))) {
     facade[`on${event}`] = null;
   }
 
   facade.open = function (method, url, async, user, pass) {
-    // Initailize empty XHR facade
+    if (url) {
+      const match = interceptOnly.find(u => u.includes(options.url.toString()));
+      if (!match) {
+        watch = false;
+      }
+    }
+    // Initialize empty XHR facade
     currentState = 0;
     hasError = false;
     transiting = false;
@@ -234,7 +245,7 @@ const Xhook = function () {
     //reset response
     response = {};
     response.headers = {};
-    // openned facade xhr (not real xhr)
+    // opened facade xhr (not real xhr)
     setReadyState(1);
   };
 
@@ -297,6 +308,7 @@ const Xhook = function () {
       if (!beforeHooks.length) {
         return send();
       }
+
       //go to next hook OR optionally provide response
       const done = function (userResponse) {
         //break chain - provide dummy response (readyState 4)
@@ -340,7 +352,9 @@ const Xhook = function () {
       return;
     };
     //kick off
-    process();
+    if (watch) {
+      process();
+    }
   };
 
   facade.abort = function () {
@@ -407,9 +421,16 @@ Xhook.DONE = 4;
 
 //patch interface
 export default {
+  filterURL(urls) {
+    interceptOnly = urls;
+  },
   patch() {
     if (Native) {
-      windowRef.XMLHttpRequest = Xhook;
+      if (interceptOnly) {
+        windowRef.XMLHttpRequest = Native;
+      } else {
+        windowRef.XMLHttpRequest = Xhook;
+      }
     }
   },
   unpatch() {

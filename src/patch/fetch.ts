@@ -9,6 +9,7 @@ interface InterceptReqOptions extends Omit<RequestInit, "window"> {
 
 //browser's fetch
 const Native: typeof fetch = windowRef.fetch;
+let interceptOnly: string[] = [];
 
 function copyToObjFromRequest(req: Request): any {
   const copyedKeys = [
@@ -49,8 +50,8 @@ function covertTDAarryToObj<T extends [any, any][]>(input: T) {
 }
 
 /**
- * if fetch(hacked by Xhook) accept a Request as a first parameter, it will be destrcuted to a plain object.
- * Finally the whole network request was convert to fectch(Request.url, other options)
+ * if fetch(hacked by Xhook) accept a Request as a first parameter, it will be destructed to a plain object.
+ * Finally the whole network request was convert to fetch(Request.url, other options)
  */
 const Xhook: typeof fetch = function (input, init = { headers: {} }) {
   let options: InterceptReqOptions = { ...init, isFetch: true };
@@ -69,6 +70,14 @@ const Xhook: typeof fetch = function (input, init = { headers: {} }) {
     };
   } else {
     options.url = input;
+  }
+
+  if (options.url) {
+    const match = interceptOnly.find(u => u.includes(options.url.toString()));
+    if (!match) {
+      const { url, ...rest } = options;
+      return Native(url, rest);
+    }
   }
 
   const beforeHooks = hooks.listeners("before");
@@ -143,7 +152,11 @@ const Xhook: typeof fetch = function (input, init = { headers: {} }) {
 };
 
 //patch interface
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
+  filterURL(urls: string[]) {
+    interceptOnly = urls;
+  },
   patch() {
     if (Native) {
       windowRef.fetch = Xhook;
