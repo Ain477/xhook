@@ -1,9 +1,10 @@
 {
   "name": "@aincoder/fhook",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Easily intercept and modify XHR request and response",
   "main": "lib/main.js",
   "module": "es/main.js",
+  "types": "./src/type.d.ts",
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c",
