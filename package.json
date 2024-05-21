@@ -1,5 +1,5 @@
 {
-  "name": "fhook",
+  "name": "@ain477/fhook",
   "version": "0.0.1",
   "description": "Easily intercept and modify XHR request and response",
   "main": "lib/main.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jpillora/xhook"
+    "url": "https://github.com/Ain477/xhook"
   },
   "keywords": [
     "xhr",
